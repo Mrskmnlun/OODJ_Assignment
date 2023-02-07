@@ -42,7 +42,7 @@ public class CustomerLoginTab extends javax.swing.JFrame {
 
         jLabel2.setText("Email");
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

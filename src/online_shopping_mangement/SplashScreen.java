@@ -33,11 +33,12 @@ public class SplashScreen extends javax.swing.JFrame {
         LoadingBar = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(826, 420));
 
         LoadingLabel.setText("Loading....");
 
         LoadingValue.setText("0%...");
+
+        LoadingBar.setForeground(new java.awt.Color(255, 255, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +73,7 @@ public class SplashScreen extends javax.swing.JFrame {
         
         try{
             for(int i=0;i<=100;i++){
-                Thread.sleep(100);
+                Thread.sleep(10);
                 sp.LoadingValue.setText(i+"%");
                 
                 if(i==10){
