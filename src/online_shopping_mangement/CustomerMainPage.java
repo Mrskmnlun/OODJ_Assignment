@@ -9,12 +9,16 @@ package online_shopping_mangement;
  * @author asus
  */
 public class CustomerMainPage extends javax.swing.JFrame {
-
+    
+    private String username;
     /**
      * Creates new form CustomerMainPage
      */
-    public CustomerMainPage() {
+    public CustomerMainPage(String username) {
         initComponents();
+        this.username = username;
+        System.out.println("Username passed to CustomerMainPage: " + username);
+        
     }
 
     /**
@@ -43,6 +47,11 @@ public class CustomerMainPage extends javax.swing.JFrame {
         });
 
         jButton2.setText("Profile");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("History");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -115,22 +124,28 @@ public class CustomerMainPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RegisteredMenu rm = new RegisteredMenu();
+        RegisteredMenu rm = new RegisteredMenu(username);
         rm.show();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Profile pf = new Profile();
-        pf.show();
+        PurchaseHistory ph = new PurchaseHistory(username);
+        ph.show();
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        PurchaseHistory ph = new PurchaseHistory();
-        ph.show();
+        CustomerLoginTab at = new CustomerLoginTab();
+        at.show();
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Profile pf = new Profile(username);
+        pf.show();
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +177,7 @@ public class CustomerMainPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerMainPage().setVisible(true);
+                new CustomerMainPage(User.getUsername()).setVisible(true);
             }
         });
     }

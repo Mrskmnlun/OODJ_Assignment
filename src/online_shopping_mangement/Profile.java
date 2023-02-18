@@ -4,17 +4,34 @@
  */
 package online_shopping_mangement;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author asus
  */
 public class Profile extends javax.swing.JFrame {
-
+private String username;
     /**
      * Creates new form Profile
      */
-    public Profile() {
+    public Profile(String username) {
         initComponents();
+        this.username = username;
+        System.out.println("Username passed to Profile: " + username);
+        User currentUser = User.getUserData(username); // assuming username is already set in the profile page
+        if (currentUser != null) {
+            jTextField1.setText(currentUser.getAddress());
+            jTextField2.setText(currentUser.getEmail());
+            jTextField3.setText(currentUser.getPhoneNumber());
+        }
     }
 
     /**
@@ -48,6 +65,11 @@ public class Profile extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 204));
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,13 +101,12 @@ public class Profile extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Phone Number");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jButton2.setText("jButton2");
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("User Profile");
@@ -107,10 +128,10 @@ public class Profile extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jTextField3)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
+                        .addGap(280, 280, 280)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
+                        .addGap(269, 269, 269)
                         .addComponent(jLabel5)))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
@@ -118,9 +139,9 @@ public class Profile extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel5)
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,6 +160,52 @@ public class Profile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CustomerMainPage at = new CustomerMainPage(username);
+        at.show();
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    String address = jTextField1.getText();
+    String email = jTextField2.getText();
+    String phone = jTextField3.getText();
+
+    try {
+        File file = new File("users.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        List<String> lines = new ArrayList<>();
+        String line;
+        boolean found = false;
+        while ((line = reader.readLine()) != null) {
+            if (line.startsWith(username + ",")) {
+                String[] parts = line.split(",");
+                String newLine = String.format("%s,%s,%s,%s,%s,%s",
+                        parts[0], parts[1], parts[2], address, email, phone);
+                lines.add(newLine);
+                found = true;
+            } else {
+                lines.add(line);
+            }
+        }
+        reader.close();
+
+        if (found) {
+            FileWriter writer = new FileWriter(file);
+            for (String s : lines) {
+                writer.write(s);
+                writer.write(System.lineSeparator());
+            }
+            writer.close();
+            JOptionPane.showMessageDialog(null, "Profile updated successfully.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: username not found.");
+        }
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,7 +237,7 @@ public class Profile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Profile().setVisible(true);
+                new Profile(User.getUsername()).setVisible(true);
             }
         });
     }

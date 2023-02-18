@@ -1,0 +1,4 @@
+username,password,sex,address,email,phone_number
+admin,123,male,admin home1,admin@gmail.com1,012354868551
+admin123,456,female,admin home,admin@gmail.com,0543248
+

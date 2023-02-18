@@ -1,0 +1,6 @@
+1,ROG Phone 1,Electronic Accessories,mobile,3000
+2,ROG Phone 2,Electronic Accessories,mobile,3000
+3,ROG Phone 3,Electronic Accessories,mobile,3000
+4,ROG Phone 4,Electronic Accessories,mobile,3000
+5,ROG Phone 5,Electronic Accessories,mobile,3000
+6,ROG Phone 6,Electronic Accessories,mobile,3000
