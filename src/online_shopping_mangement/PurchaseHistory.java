@@ -31,7 +31,7 @@ private String username;
         while ((line = br.readLine()) != null) {
             if (!line.trim().isEmpty()) {
                 String[] values = line.split(",");
-                if (values[0].equals(username)) {
+                if (values[1].equals(username)) {
                     tblModel.addRow(values);
                 }
             }
@@ -100,17 +100,17 @@ private String username;
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "User", "Product ID", "Product Name", "Category", "Sub-Category", "Price", "Quantity"
+                "Order ID", "User", "Product ID", "Product Name", "Category", "Sub-Category", "Price", "Quantity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                true, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

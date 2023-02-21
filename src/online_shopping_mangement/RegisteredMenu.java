@@ -346,14 +346,33 @@ public class RegisteredMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // Get the data model of the JTable
+    // Get the data model of the JTable
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
     // Create a StringBuilder to store the data
     StringBuilder sb = new StringBuilder();
 
+    // Get the current order ID
+    int orderId = 1; // Set the initial order ID to 1
+    try (BufferedReader br = new BufferedReader(new FileReader("purchases.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            // Read the last order ID from the file and increment it by one
+            String[] parts = line.split(",");
+            if (parts.length > 0) {
+                int id = Integer.parseInt(parts[0].substring(1));
+                if (id >= orderId) {
+                    orderId = id + 1;
+                }
+            }
+        }
+    } catch (IOException ex) {
+        // Ignore errors reading the file and use the initial order ID
+    }
+
     // Traverse through the rows of the JTable and append the data to the StringBuilder
     for (int i = 0; i < model.getRowCount(); i++) {
+        sb.append("S").append(String.format("%04d", orderId)).append(",");
         sb.append(username).append(",");
         sb.append(model.getValueAt(i, 0)).append(",");
         sb.append(model.getValueAt(i, 1)).append(",");
@@ -365,7 +384,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
 
     // Write the data to a text file
     try {
-        FileWriter writer = new FileWriter("purchases.txt",true);
+        FileWriter writer = new FileWriter("purchases.txt", true);
         writer.write(sb.toString());
         writer.close();
         JOptionPane.showMessageDialog(this, "Purchase data has been saved to purchases.txt");
@@ -376,6 +395,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
     } catch (IOException ex) {
         JOptionPane.showMessageDialog(this, "Error writing to file: " + ex.getMessage());
     }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

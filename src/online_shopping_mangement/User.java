@@ -39,10 +39,10 @@ public class User {
 
     // Add getters and setters for all fields
 
-    public static boolean writeToFile(User user) {
+    public static boolean writeToFile(User user,String role) {
         try {
             FileWriter writer = new FileWriter("users.txt", true);
-            writer.write(user.getUsername() + "," + user.getPassword() + "," + user.getSex() + "," + user.getAddress() + "," + user.getEmail() + "," + user.getPhoneNumber() + "\n");
+            writer.write(user.getUsername() + "/" + user.getPassword() + "/" + user.getSex() + "/" + user.getAddress() + "/" + user.getEmail() + "/" + user.getPhoneNumber() + "/" + role+ "\n");
             writer.close();
             return true;
         } catch (IOException e) {
@@ -55,8 +55,8 @@ public class User {
         try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 6 && parts[0].equals(username)) {
+                String[] parts = line.split("/");
+                if (parts.length == 7 && parts[0].equals(username)) {
                     return true;
                 }
             }
@@ -71,7 +71,7 @@ public class User {
         // read stored user information from text file
         try (Scanner scanner = new Scanner(new File("users.txt"))) {
             while (scanner.hasNextLine()) {
-                String[] parts = scanner.nextLine().split(",");
+                String[] parts = scanner.nextLine().split("/");
                 String storedUsername = parts[0];
                 String storedPassword = parts[1];
                 if (username.equals(storedUsername) && password.equals(storedPassword)) {
@@ -91,7 +91,7 @@ public class User {
     public static User getUserData(String username) {
     try (Scanner scanner = new Scanner(new File("users.txt"))) {
         while (scanner.hasNextLine()) {
-            String[] parts = scanner.nextLine().split(",");
+            String[] parts = scanner.nextLine().split("/");
             String storedUsername = parts[0];
             String password = parts[1];
             String sex = parts[2];

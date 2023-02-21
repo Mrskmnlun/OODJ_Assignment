@@ -205,7 +205,7 @@ public class CustomerRegisterTab extends javax.swing.JFrame {
     
     User newUser = new User(username, password, sex, address, email, phoneNumber);
     // write user to file
-    if (User.writeToFile(newUser)) {
+    if (User.writeToFile(newUser,"customer")) {
         // display success message
         JOptionPane.showMessageDialog(null, "Registration successful!");
         // clear input fields
