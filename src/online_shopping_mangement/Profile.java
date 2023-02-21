@@ -179,8 +179,8 @@ private String username;
         String line;
         boolean found = false;
         while ((line = reader.readLine()) != null) {
-            if (line.startsWith(username + ",")) {
-                String[] parts = line.split(",");
+            if (line.startsWith(username + "/")) {
+                String[] parts = line.split("/");
                 String newLine = String.format("%s,%s,%s,%s,%s,%s",
                         parts[0], parts[1], parts[2], address, email, phone);
                 lines.add(newLine);
