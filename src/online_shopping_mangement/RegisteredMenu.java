@@ -4,15 +4,12 @@
  */
 package online_shopping_mangement;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -23,6 +20,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class RegisteredMenu extends javax.swing.JFrame {
     private String username;
+    private double totalPrice = 0;
     /**
      * Creates new form RegisteredManu
      */
@@ -38,7 +36,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
             tblModel.setRowCount(0);
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
-                String[] values = line.split(",");
+                String[] values = line.split("/");
                 tblModel.addRow(values);
             }
                 System.out.println("Read line: " + line);
@@ -174,6 +172,12 @@ public class RegisteredMenu extends javax.swing.JFrame {
 
         jLabel4.setText("Product ID");
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Product Name");
 
         jLabel6.setText("Quantity");
@@ -304,7 +308,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
             row[5] = jTextField4.getText();
             model2.addRow(row);
         }
-         double totalPrice = 0;
+
         for (int i = 0; i < model2.getRowCount(); i++) {
             double price = Double.parseDouble(model2.getValueAt(i, 4).toString());
             int quantity = Integer.parseInt(model2.getValueAt(i, 5).toString());
@@ -312,7 +316,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
         }
         
         // Update the TotalPrice JLabel with the new total price
-        TotalPrice.setText("Total Price: " + totalPrice);
+        TotalPrice.setText(Double.toString(totalPrice));
     }                                        
     }//GEN-LAST:event_jButton3ActionPerformed
     
@@ -339,7 +343,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0);
-    TotalPrice.setText("Total Price: 0");
+    TotalPrice.setText("0");
     jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
@@ -358,8 +362,8 @@ public class RegisteredMenu extends javax.swing.JFrame {
         String line;
         while ((line = br.readLine()) != null) {
             // Read the last order ID from the file and increment it by one
-            String[] parts = line.split(",");
-            if (parts.length > 0) {
+            String[] parts = line.split("/");
+            if (parts.length > 0 && parts[0].startsWith("S")) {
                 int id = Integer.parseInt(parts[0].substring(1));
                 if (id >= orderId) {
                     orderId = id + 1;
@@ -370,17 +374,40 @@ public class RegisteredMenu extends javax.swing.JFrame {
         // Ignore errors reading the file and use the initial order ID
     }
 
-    // Traverse through the rows of the JTable and append the data to the StringBuilder
-    for (int i = 0; i < model.getRowCount(); i++) {
-        sb.append("S").append(String.format("%04d", orderId)).append(",");
-        sb.append(username).append(",");
-        sb.append(model.getValueAt(i, 0)).append(",");
-        sb.append(model.getValueAt(i, 1)).append(",");
-        sb.append(model.getValueAt(i, 2)).append(",");
-        sb.append(model.getValueAt(i, 3)).append(",");
-        sb.append(model.getValueAt(i, 4)).append(",");
-        sb.append(model.getValueAt(i, 5)).append("\n");
+    // Get the user's address from the users.txt file
+    String userAddress = "";
+    try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split("/");
+            if (parts.length >= 4 && parts[0].equals(username)) {
+                userAddress = parts[3];
+                break;
+            }
+        }
+    } catch (IOException ex) {
+        // Ignore errors reading the file and use an empty address
     }
+
+    // Traverse through the rows of the JTable and append the data to the StringBuilder
+for (int i = 0; i < model.getRowCount(); i++) {
+    int quantity = Integer.parseInt(model.getValueAt(i, 4).toString());
+    double price = Double.parseDouble(model.getValueAt(i, 5).toString());
+    double totalprice = quantity * price;
+    sb.append("S").append(String.format("%04d", orderId)).append("/");
+    sb.append(username).append("/");
+    sb.append(model.getValueAt(i, 0)).append("/");
+    sb.append(model.getValueAt(i, 1)).append("/");
+    sb.append(model.getValueAt(i, 2)).append("/");
+    sb.append(model.getValueAt(i, 3)).append("/");
+    sb.append(price).append("/");
+    sb.append(quantity).append("/");
+    sb.append(totalprice).append("/");
+    sb.append(java.time.LocalDate.now()).append("/");
+    sb.append(userAddress).append("/");
+    sb.append("undeliver").append("\n"); // Add the order status line
+    orderId++; // Increment the order ID for the next row
+}
 
     // Write the data to a text file
     try {
@@ -392,11 +419,15 @@ public class RegisteredMenu extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
+        TotalPrice.setText("");
     } catch (IOException ex) {
         JOptionPane.showMessageDialog(this, "Error writing to file: " + ex.getMessage());
     }
-
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
