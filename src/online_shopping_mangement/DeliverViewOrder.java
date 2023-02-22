@@ -266,7 +266,7 @@ public class DeliverViewOrder extends javax.swing.JFrame {
                 writer.write(model.getValueAt(i, 2).toString() + "/");
                 writer.write(model.getValueAt(i, 3).toString() + "/");
                 writer.write(model.getValueAt(i, 4).toString() + "/");
-                writer.write("pending/Uncomment"+"\n"); // Assume status is always "pending"
+                writer.write("pending/Uncomment/notime"+"\n"); // Assume status is always "pending"
                 deliveryId++; // Increment the delivery ID for the next row
             
             
@@ -319,8 +319,8 @@ public class DeliverViewOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DeliverViewOrder Do = new DeliverViewOrder(username);
-        Do.show();
+        DeliveryMainPage Dm = new DeliveryMainPage(username);
+        Dm.show();
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 

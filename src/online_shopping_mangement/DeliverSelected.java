@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +40,7 @@ public class DeliverSelected extends javax.swing.JFrame {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("/");
-                if (parts.length == 9 && parts[7].equals("pending")) {
+                if (parts.length == 10 && parts[7].equals("pending")) {
                     Object[] row = { parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6],parts[7] };
                     tableModel.addRow(row);
                 }
@@ -278,22 +280,22 @@ public class DeliverSelected extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DeliverViewOrder Do = new DeliverViewOrder(username);
+        DeliveryMainPage Do = new DeliveryMainPage(username);
         Do.show();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void RejectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectedActionPerformed
-     // Get the selected row in the table
+    // Get the selected row in the table
     int selectedRow = jTable1.getSelectedRow();
     if (selectedRow == -1) {
         // No row is selected
         return;
     }
-    
+
     // Get the delivery ID from the selected row
     String deliveryID = jTable1.getValueAt(selectedRow, 0).toString();
-    
+
     // Read the contents of the file and store them in an ArrayList
     ArrayList<String> rows = new ArrayList<>();
     try {
@@ -307,7 +309,7 @@ public class DeliverSelected extends javax.swing.JFrame {
         ex.printStackTrace();
         return;
     }
-    
+
     // Loop through the rows and find the row with the matching delivery ID
     for (int i = 0; i < rows.size(); i++) {
         String row = rows.get(i);
@@ -316,12 +318,13 @@ public class DeliverSelected extends javax.swing.JFrame {
             // Found the matching row, update the feedback and status fields
             parts[8] = Feedback.getText();  // Update feedback field
             parts[7] = "rejected";  // Update status field
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String localTime = LocalDateTime.now().format(formatter);
+            parts[9] = localTime;  // Add local time field
             rows.set(i, String.join("/", parts));
-            break;
         }
     }
-        DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
-        model2.setRowCount(0);
+
     // Write the updated ArrayList back to the file
     try {
         PrintWriter writer = new PrintWriter(new FileWriter("SelectedOrder.txt"));
@@ -333,6 +336,17 @@ public class DeliverSelected extends javax.swing.JFrame {
         ex.printStackTrace();
         return;
     }
+
+    // Update the table with the new data
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
+    loadTableData();
+    Feedback.setText("");
+    DeliveryID.setText("");
+    OrderID.setText("");
+    ProductName.setText("");
+    Quantity.setText("");
+    Address.setText("");
     }//GEN-LAST:event_RejectedActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -347,16 +361,16 @@ public class DeliverSelected extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void DeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeliveredActionPerformed
-     // Get the selected row in the table
+    // Get the selected row in the table
     int selectedRow = jTable1.getSelectedRow();
     if (selectedRow == -1) {
         // No row is selected
         return;
     }
-    
+
     // Get the delivery ID from the selected row
     String deliveryID = jTable1.getValueAt(selectedRow, 0).toString();
-    
+
     // Read the contents of the file and store them in an ArrayList
     ArrayList<String> rows = new ArrayList<>();
     try {
@@ -370,7 +384,7 @@ public class DeliverSelected extends javax.swing.JFrame {
         ex.printStackTrace();
         return;
     }
-    
+
     // Loop through the rows and find the row with the matching delivery ID
     for (int i = 0; i < rows.size(); i++) {
         String row = rows.get(i);
@@ -379,12 +393,13 @@ public class DeliverSelected extends javax.swing.JFrame {
             // Found the matching row, update the feedback and status fields
             parts[8] = Feedback.getText();  // Update feedback field
             parts[7] = "delivered";  // Update status field
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String localTime = LocalDateTime.now().format(formatter);
+            parts[9] = localTime;  // Add local time field
             rows.set(i, String.join("/", parts));
-            break;
         }
     }
-        DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
-        model2.setRowCount(0);
+
     // Write the updated ArrayList back to the file
     try {
         PrintWriter writer = new PrintWriter(new FileWriter("SelectedOrder.txt"));
@@ -396,9 +411,17 @@ public class DeliverSelected extends javax.swing.JFrame {
         ex.printStackTrace();
         return;
     }
-    
-    // Reload the data in the table
+
+    // Update the table with the new data
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
     loadTableData();
+    Feedback.setText("");
+    DeliveryID.setText("");
+    OrderID.setText("");
+    ProductName.setText("");
+    Quantity.setText("");
+    Address.setText("");
     }//GEN-LAST:event_DeliveredActionPerformed
 
     /**
