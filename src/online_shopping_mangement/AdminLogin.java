@@ -67,7 +67,6 @@ public class AdminLogin extends javax.swing.JFrame {
         usertype.add(jRadioButton1);
         jRadioButton1.setText("Admin");
         jRadioButton1.setToolTipText("");
-        jRadioButton1.setActionCommand("admin");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -76,7 +75,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
         usertype.add(jRadioButton2);
         jRadioButton2.setText("Staff");
-        jRadioButton2.setActionCommand("staff");
+        jRadioButton2.setActionCommand("Delivery Staff");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
