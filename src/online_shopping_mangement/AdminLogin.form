@@ -140,7 +140,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Admin"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="actionCommand" type="java.lang.String" value="admin"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
@@ -152,7 +151,7 @@
           <ComponentRef name="usertype"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Staff"/>
-        <Property name="actionCommand" type="java.lang.String" value="staff"/>
+        <Property name="actionCommand" type="java.lang.String" value="Delivery Staff"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
