@@ -1,0 +1,2 @@
+Order ID/Username/Product ID/Product Name/Category/Sub Category/Quantity/Total Payment/Order Date/Address/Status
+O1/Alice/P2/ROG Phone 2/Electronic Accessories/Mobile/1/3000/2022-2-15/xxxxxxxxxxx/Assigned

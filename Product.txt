@@ -1,0 +1,6 @@
+Product ID/Product Name/Category/Sub Category/Price/Stock
+P1/ROG Phone 1/Electronic Accessories/Mobile/3000/9
+P2/ROG Phone 2/Electronic Accessories/Mobile/3000/15
+P3/ROG Phone 3/Electronic Accessories/Mobile/3000/9
+P4/Vivo v15/Electronic Accessories/Mobile/900.00/10
+P5/Vivo v15 pro/Electronic Accessories/Mobile/1099.00/6

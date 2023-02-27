@@ -1,0 +1,5 @@
+UserID/Username/User Type/Email/Contact Number/Address/Password
+U1/Gary/Admin/garyfoo0628@gmail.com/+601135357112/noy, xxxxxxx, xxxxx/1234
+U2/Ali/Admin/ali3849@gmail.com/+601125687545/xxxxxxxxxxxxxxxx/12345
+U3/Staff 1/Delivery Staff/staff1@gmail.com/+60123568546/yyyyyyyyyyyyyyyy/1357
+U4/Staff 2/Delivery Staff/staff2@gmail.com/+60165895632/ffffffffffffffffffff/2468

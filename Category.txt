@@ -1,0 +1,5 @@
+Category ID/Category Name/Sub Category
+C1/Electronic Accessories/Mobile,Computer,TV,Camera
+C2/Health & Beauty/Skincare,Hair,Bath,Medical
+C3/Home & Lifestyle/Decor,Furniture,Kitchen,Outdoor
+C4/Fashion/Women,Men,Accessories,Sport,yyyyy
