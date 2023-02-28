@@ -181,13 +181,13 @@ public class AdminLogin extends javax.swing.JFrame {
                 flg=flg+1;
                 if (Usertype.equals(data[2])){
                     JOptionPane.showMessageDialog(rootPane, "Login Successful", "Login Success", JOptionPane.INFORMATION_MESSAGE);
-                    if (Usertype.equals("admin")){
+                    if (Usertype.equals("Admin")){
                         AdminMainPage am = new AdminMainPage();
                         am.setVisible(true);
                         dispose();
                     }
-                    else if (Usertype.equals("staff")){
-                        AdminMainPage am = new AdminMainPage();
+                    else if (Usertype.equals("Delivery Staff")){
+                        DeliveryMainPage am = new DeliveryMainPage(data[1]);
                         am.setVisible(true);
                         dispose();
                     }

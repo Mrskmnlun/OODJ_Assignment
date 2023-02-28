@@ -30,17 +30,19 @@ public class RegisteredMenu extends javax.swing.JFrame {
         System.out.println("Username passed to Menu: " + username);
         
         try {
-            BufferedReader br = new BufferedReader (new FileReader("Data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("Data.txt"));
+            String header = br.readLine(); // Read and discard the first line (header row)
             String line;
-            DefaultTableModel tblModel = (DefaultTableModel)jTable2.getModel();
+            DefaultTableModel tblModel = (DefaultTableModel) jTable2.getModel();
             tblModel.setRowCount(0);
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
-                String[] values = line.split("/");
-                tblModel.addRow(values);
-            }
+                    String[] values = line.split("/");
+                    tblModel.addRow(values);
+                }
                 System.out.println("Read line: " + line);
-           }
+            }
+            br.close(); // Close the BufferedReader
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -347,6 +349,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
     jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
+    totalPrice= 0;
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -358,7 +361,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
 
     // Get the current order ID
     int orderId = 1; // Set the initial order ID to 1
-    try (BufferedReader br = new BufferedReader(new FileReader("purchases.txt"))) {
+    try (BufferedReader br = new BufferedReader(new FileReader("order.txt"))) {
         String line;
         while ((line = br.readLine()) != null) {
             // Read the last order ID from the file and increment it by one
@@ -391,7 +394,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
 
     // Traverse through the rows of the JTable and append the data to the StringBuilder
 for (int i = 0; i < model.getRowCount(); i++) {
-    int quantity = Integer.parseInt(model.getValueAt(i, 4).toString());
+    double quantity = Double.parseDouble(model.getValueAt(i, 4).toString());
     double price = Double.parseDouble(model.getValueAt(i, 5).toString());
     double totalprice = quantity * price;
     sb.append("S").append(String.format("%04d", orderId)).append("/");
@@ -411,7 +414,7 @@ for (int i = 0; i < model.getRowCount(); i++) {
 
     // Write the data to a text file
     try {
-        FileWriter writer = new FileWriter("purchases.txt", true);
+        FileWriter writer = new FileWriter("order.txt", true);
         writer.write(sb.toString());
         writer.close();
         JOptionPane.showMessageDialog(this, "Purchase data has been saved to purchases.txt");
@@ -420,6 +423,7 @@ for (int i = 0; i < model.getRowCount(); i++) {
         jTextField3.setText("");
         jTextField4.setText("");
         TotalPrice.setText("");
+        totalPrice= 0;
     } catch (IOException ex) {
         JOptionPane.showMessageDialog(this, "Error writing to file: " + ex.getMessage());
     }

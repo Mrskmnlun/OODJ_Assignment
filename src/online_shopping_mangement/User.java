@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class User {
+public abstract class User {
     private static String username;
     private String password;
     private String sex;
@@ -88,7 +88,7 @@ public class User {
     
     
     
-    public static User getUserData(String username) {
+public static Customer getUserData(String username) {
     try (Scanner scanner = new Scanner(new File("users.txt"))) {
         while (scanner.hasNextLine()) {
             String[] parts = scanner.nextLine().split("/");
@@ -99,7 +99,7 @@ public class User {
             String email = parts[4];
             String phoneNumber = parts[5];
             if (username.equals(storedUsername)) {
-                return new User(storedUsername, password, sex, address, email, phoneNumber);
+                return new Customer(storedUsername, password, sex, address, email, phoneNumber);
             }
         }
     } catch (FileNotFoundException e) {

@@ -7,9 +7,17 @@ package online_shopping_mangement;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -26,37 +34,20 @@ public class DeliverViewOrder extends javax.swing.JFrame {
     public DeliverViewOrder(String username) {
         initComponents();
         this.username = username;
+        loadOrderData();
         System.out.println("Username passed to View Order: " + username);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("purchases.txt"));
-            String line;
-            DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
-            tblModel.setRowCount(0);
-            while ((line = br.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    String[] values = line.split("/");
-                    if (values.length >= 12 && values[11].equals("undeliver")) {
-                        String[] selectedValues = {values[0], values[1], values[3], values[6],values[10]};
-                        tblModel.addRow(selectedValues);
-                    }
-                }
-                System.out.println("Read line: " + line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
         private void loadOrderData() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("purchases.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("Delivery.txt"));
             String line;
             DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
             tblModel.setRowCount(0);
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     String[] values = line.split("/");
-                    if (values.length >= 12 && values[11].equals("undeliver")) {
-                        String[] selectedValues = {values[0], values[1], values[3], values[6],values[10]};
+                    if (values.length >= 10 && values[1].equals(username) && values[7].equals("undeliver")) {
+                        String[] selectedValues = {values[0], values[1], values[2], values[4], values[5],values[6]};
                         tblModel.addRow(selectedValues);
                     }
                 }
@@ -65,7 +56,7 @@ public class DeliverViewOrder extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,7 +102,7 @@ public class DeliverViewOrder extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 477, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
@@ -130,11 +121,11 @@ public class DeliverViewOrder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "User ID", "Product Name", "Quantity", "Address"
+                "Delviery ID", "Staff Name", "Order ID", "Product Name", "Quantity", "Address"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -148,11 +139,11 @@ public class DeliverViewOrder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "User ID", "Product Name", "Quantity", "Address"
+                "Delivery ID", "Staff Name", "Order ID", "Product Name", "Quantity", "Address"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -190,9 +181,8 @@ public class DeliverViewOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,95 +217,39 @@ public class DeliverViewOrder extends javax.swing.JFrame {
             row[2] = tblModel.getValueAt(indexs[i],2);
             row[3] = tblModel.getValueAt(indexs[i],3);
             row[4] = tblModel.getValueAt(indexs[i],4);
+            row[5] = tblModel.getValueAt(indexs[i],5);
             model2.addRow(row);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int deliveryId = 1; // Start delivery ID at 1
-        File file = new File("SelectedOrder.txt");
-        if (file.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (line.startsWith("DeliveryID")) {
-                        continue; // skip the header line
-                    }
-                    String[] fields = line.split("/");
-                    if (fields.length >= 1) {
-                        int lastDeliveryId = Integer.parseInt(fields[0]);
-                        if (lastDeliveryId >= deliveryId) {
-                            deliveryId = lastDeliveryId + 1;
-                        }
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        int rowCount = model.getRowCount();
+        try {
+            Path path = Paths.get("Delivery.txt");
+            List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+            for (int i = 0; i < rowCount; i++) {
+                String deliveryID = (String) model.getValueAt(i, 0);
+                for (int j = 0; j < lines.size(); j++) {
+                    String[] values = lines.get(j).split("/");
+                    if (values[0].equals(deliveryID)) {
+                        lines.set(j, values[0] + "/" + values[1] + "/" + values[2] + "/"
+                                + values[3] + "/" + values[4] + "/" + values[5] + "/" + values[6] + "/"
+                                + "pending" + "/" + values[8] + "/" + values[9]);
+                        break;
                     }
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+            Files.write(path, lines, StandardCharsets.UTF_8);
+            JOptionPane.showMessageDialog(this, "Delivery status updated to Pending.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+            model1.setRowCount(0);
+            model.setRowCount(0);
+            loadOrderData();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Failed to update delivery status.", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
-        boolean append = true; // Append to the file if it exists
-       try (FileWriter writer = new FileWriter(file, append)) { // Append to the file if it exists
-            // Write the data from the table to the file
-            TableModel model = jTable2.getModel();
-            for (int i = 0; i < model.getRowCount(); i++) {
-                // Write the delivery ID, StafffName, order ID, user ID, product name, quantity, and status for each row
-                writer.write(deliveryId + "/");
-                writer.write(username + "/");
-                writer.write(model.getValueAt(i, 0).toString() + "/");
-                writer.write(model.getValueAt(i, 1).toString() + "/");
-                writer.write(model.getValueAt(i, 2).toString() + "/");
-                writer.write(model.getValueAt(i, 3).toString() + "/");
-                writer.write(model.getValueAt(i, 4).toString() + "/");
-                writer.write("pending/Uncomment/notime"+"\n"); // Assume status is always "pending"
-                deliveryId++; // Increment the delivery ID for the next row
-            
-            
-            // Modify the purchases.txt file
-            String orderID = model.getValueAt(i, 0).toString();
-            File purchasesFile = new File("purchases.txt");
-            File tempFile = new File("temp.txt");
-            try (BufferedReader reader = new BufferedReader(new FileReader(purchasesFile));
-                 BufferedWriter writer2 = new BufferedWriter(new FileWriter(tempFile))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String[] fields = line.split("/");
-                    if (fields.length >= 3 && fields[0].equals(orderID)) {
-                        fields[fields.length-1] = "pending";
-                        line = String.join("/", fields);
-                    }
-                    writer2.write(line + "\n");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            // Replace the original purchases file with the modified file
-            try (BufferedReader reader = new BufferedReader(new FileReader(tempFile));
-                 BufferedWriter writer2 = new BufferedWriter(new FileWriter(purchasesFile))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    writer2.write(line + "\n");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
-        // Show a JOptionPane to indicate that the file has been written
-        JOptionPane.showMessageDialog(this, "SelectedOrder.txt has been written", "Complete", JOptionPane.INFORMATION_MESSAGE);
-        
-        // Clear jTable2
-        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
-        model2.setRowCount(0);
-        
-        // Refresh jTable1
-        DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
-        model1.setRowCount(0);
-        loadOrderData();
-        
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

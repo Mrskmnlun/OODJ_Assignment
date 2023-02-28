@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DeliverSelected extends javax.swing.JFrame {
     private String username;
-    private String filePath = "SelectedOrder.txt";
+    private String filePath = "Delivery.txt";
     private String[] columnNames = {"DeliveryID", "StaffName", "OrderId", "UserID", "ProductName", "Quantity","Address" ,"Status"};
     private DefaultTableModel tableModel;
     /**
@@ -40,8 +41,8 @@ public class DeliverSelected extends javax.swing.JFrame {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("/");
-                if (parts.length == 10 && parts[7].equals("pending")) {
-                    Object[] row = { parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6],parts[7] };
+                if (parts.length == 10 && parts[7].equals("pending") && parts[1].equals(username)) {
+                    Object[] row = { parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7] };
                     tableModel.addRow(row);
                 }
             }
@@ -212,11 +213,9 @@ public class DeliverSelected extends javax.swing.JFrame {
                                     .addComponent(OrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(Quantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(30, 30, 30))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(Quantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                                     .addComponent(jLabel4)
                                     .addComponent(ProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel7)
@@ -299,7 +298,7 @@ public class DeliverSelected extends javax.swing.JFrame {
     // Read the contents of the file and store them in an ArrayList
     ArrayList<String> rows = new ArrayList<>();
     try {
-        BufferedReader reader = new BufferedReader(new FileReader("SelectedOrder.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Delivery.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
             rows.add(line);
@@ -327,7 +326,7 @@ public class DeliverSelected extends javax.swing.JFrame {
 
     // Write the updated ArrayList back to the file
     try {
-        PrintWriter writer = new PrintWriter(new FileWriter("SelectedOrder.txt"));
+        PrintWriter writer = new PrintWriter(new FileWriter("Delivery.txt"));
         for (String row : rows) {
             writer.println(row);
         }
@@ -336,7 +335,9 @@ public class DeliverSelected extends javax.swing.JFrame {
         ex.printStackTrace();
         return;
     }
-
+    
+    
+    JOptionPane.showMessageDialog(this, "Status Update", "Success", JOptionPane.INFORMATION_MESSAGE);
     // Update the table with the new data
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0);
@@ -374,7 +375,7 @@ public class DeliverSelected extends javax.swing.JFrame {
     // Read the contents of the file and store them in an ArrayList
     ArrayList<String> rows = new ArrayList<>();
     try {
-        BufferedReader reader = new BufferedReader(new FileReader("SelectedOrder.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Delivery.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
             rows.add(line);
@@ -402,7 +403,7 @@ public class DeliverSelected extends javax.swing.JFrame {
 
     // Write the updated ArrayList back to the file
     try {
-        PrintWriter writer = new PrintWriter(new FileWriter("SelectedOrder.txt"));
+        PrintWriter writer = new PrintWriter(new FileWriter("Delivery.txt"));
         for (String row : rows) {
             writer.println(row);
         }
@@ -411,7 +412,7 @@ public class DeliverSelected extends javax.swing.JFrame {
         ex.printStackTrace();
         return;
     }
-
+    JOptionPane.showMessageDialog(this, "Status Update", "Success", JOptionPane.INFORMATION_MESSAGE);
     // Update the table with the new data
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0);

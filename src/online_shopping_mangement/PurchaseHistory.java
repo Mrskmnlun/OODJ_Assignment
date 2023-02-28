@@ -24,7 +24,7 @@ private String username;
         System.out.println("Username passed to History: " + username);
         
             try {
-        BufferedReader br = new BufferedReader(new FileReader("purchases.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("order.txt"));
         String line;
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
         tblModel.setRowCount(0);

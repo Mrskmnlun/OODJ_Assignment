@@ -203,7 +203,7 @@ public class CustomerRegisterTab extends javax.swing.JFrame {
         return;
     }
     
-    User newUser = new User(username, password, sex, address, email, phoneNumber);
+    User newUser = new Customer(username, password, sex, address, email, phoneNumber);
     // write user to file
     if (User.writeToFile(newUser,"customer")) {
         // display success message

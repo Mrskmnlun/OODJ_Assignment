@@ -21,17 +21,19 @@ public class CustomerMenu extends javax.swing.JFrame {
     public CustomerMenu() {
         initComponents();
         try {
-            BufferedReader br = new BufferedReader (new FileReader("Data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("Data.txt"));
+            String header = br.readLine(); // Read and discard the first line (header row)
             String line;
-            DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
+            DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
             tblModel.setRowCount(0);
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
-                String[] values = line.split(",");
-                tblModel.addRow(values);
-            }
+                    String[] values = line.split("/");
+                    tblModel.addRow(values);
+                }
                 System.out.println("Read line: " + line);
-           }
+            }
+            br.close(); // Close the BufferedReader
         } catch (IOException e) {
             e.printStackTrace();
         }
