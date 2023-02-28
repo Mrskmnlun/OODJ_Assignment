@@ -1,2 +1,10 @@
 Order ID/Username/Product ID/Product Name/Category/Sub Category/Quantity/Total Payment/Order Date/Address/Status
 O1/Alice/P2/ROG Phone 2/Electronic Accessories/Mobile/1/3000/2022-2-15/xxxxxxxxxxx/Assigned
+S0001/admin/P5/Vivo v15 pro/Electronic Accessories/Mobile/2.0/1099.0/2198.0/2023-02-28/admin home1/undeliver
+S0002/admin/P3/ROG Phone 3/Electronic Accessories/Mobile/2.0/3000.0/6000.0/2023-02-28/admin home1/undeliver
+S0003/admin/P2/ROG Phone 2/Electronic Accessories/Mobile/2.0/3000.0/6000.0/2023-02-28/admin home1/undeliver
+S0004/admin/P4/Vivo v15/Electronic Accessories/Mobile/1.0/900.0/900.0/2023-02-28/admin home1/undeliver
+S0005/admin/P5/Vivo v15 pro/Electronic Accessories/Mobile/1.0/1099.0/1099.0/2023-02-28/admin home1/undeliver
+S0006/admin/P1/ROG Phone 1/Electronic Accessories/Mobile/1.0/3000.0/3000.0/2023-02-28/admin home1/undeliver
+S0007/admin/P1/ROG Phone 1/Electronic Accessories/Mobile/2.0/3000.0/6000.0/2023-02-28/admin home1/undeliver
+S0008/admin/P4/Vivo v15/Electronic Accessories/Mobile/2.0/900.0/1800.0/2023-02-28/admin home1/undeliver

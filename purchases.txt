@@ -1,7 +1,0 @@
-OrderID/Username/ProductID/ProductName/Category/Sub-Category/Price/Quantity/Q+P/OrderDate/Address/Status
-S0001/admin/3/ROG Phone 3/Electronic Accessories/mobile/2.0/5000/10000.0/2023-02-22/admin home1/pending
-S0002/admin/5/ROG Phone 5/Electronic Accessories/mobile/3.0/7000/21000.0/2023-02-22/admin home1/pending
-S0003/admin/2/ROG Phone 2/Electronic Accessories/mobile/3.0/4000/12000.0/2023-02-22/admin home1/pending
-S0004/admin/6/ROG Phone 6/Electronic Accessories/mobile/3.0/8000/24000.0/2023-02-22/admin home1/pending
-S0005/admin/2/ROG Phone 2/Electronic Accessories/mobile/1.0/4000/4000.0/2023-02-22/admin home1/undeliver
-

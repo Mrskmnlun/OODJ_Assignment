@@ -1,3 +1,6 @@
 username/password/sex/address/email/phone_number/role
-admin/123/male/admin home1/admin@gmail.com1/012354868551/customer
+admin/123/male/admin home111/admin@gmail.com111/01235486855111
 admin123/456/female/admin home/admin@gmail.com/0543248/customer
+staff123/123/male/fsafas/dsfgdsfsd/fdsfsdf/staff
+customer/123/male/xxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxx/customer
+customer1/123/male/xxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxx/customer

@@ -1,2 +1,13 @@
 DeliveryID/StaffName/OrderId/UserID/ProductName/Quantity/Address/Status/Feedback/Time
-D1/Staff 1/O1/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/Pending/-/-
+D1/Staff 1/O1/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/delivered/xxxxxxxxxxxxxxxx/2023-02-28 09:07:59
+D2/Staff 1/O2/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/rejected/xxxxxxxxxxxxxxxxxxxxx/2023-02-28 09:08:36
+D3/Staff 1/O3/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/delivered/-/-
+D4/Staff 1/O4/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/delivered/sxxxxxxxxxxxxxxxxxxxxxx/2023-02-28 09:10:15
+D5/Staff 1/O5/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/delivered/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxs/2023-02-28 09:11:34
+D6/Staff 1/O6/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/delivered/sssssssssssssssssssssssssssssss/2023-02-28 09:12:24
+D7/Staff 1/O7/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/pending/-/-
+D8/Staff 1/O8/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/undeliver/-/-
+D9/Staff 2/O8/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/undeliver/-/-
+D10/Staff 2/O8/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/pending/-/-
+D11/Staff 2/O8/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/undeliver/-/-
+D12/Staff 2/O8/Alice/ROG Phone 2/1/xxxxxxxxxxxxx/undeliver/-/-

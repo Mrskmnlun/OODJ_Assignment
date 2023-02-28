@@ -26,7 +26,7 @@ private String username;
         initComponents();
         this.username = username;
         System.out.println("Username passed to Profile: " + username);
-        User currentUser = User.getUserData(username); // assuming username is already set in the profile page
+        Customer currentUser = Customer.getUserData(username); // assuming username is already set in the profile page
         if (currentUser != null) {
             jTextField1.setText(currentUser.getAddress());
             jTextField2.setText(currentUser.getEmail());
@@ -181,7 +181,7 @@ private String username;
         while ((line = reader.readLine()) != null) {
             if (line.startsWith(username + "/")) {
                 String[] parts = line.split("/");
-                String newLine = String.format("%s,%s,%s,%s,%s,%s",
+                String newLine = String.format("%s/%s/%s/%s/%s/%s",
                         parts[0], parts[1], parts[2], address, email, phone);
                 lines.add(newLine);
                 found = true;

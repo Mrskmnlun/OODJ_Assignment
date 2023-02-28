@@ -137,7 +137,7 @@ public class CustomerLoginTab extends javax.swing.JFrame {
             String username = jTextField1.getText();
             String password = jPasswordField1.getText();
             
-            if (User.isValidLogin(username, password)) {
+            if (Customer.isValidLogin(username, password)) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
                 CustomerMainPage customerMainPage = new CustomerMainPage(username);
                 customerMainPage.setVisible(true);
