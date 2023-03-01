@@ -41,6 +41,7 @@ public class CustomerLoginTab extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Customer Login");
@@ -128,6 +129,7 @@ public class CustomerLoginTab extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -136,8 +138,8 @@ public class CustomerLoginTab extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             String username = jTextField1.getText();
             String password = jPasswordField1.getText();
-            
-            if (Customer.isValidLogin(username, password)) {
+            Customer cs = new Customer();
+            if (cs.isValidLogin(username, password)) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
                 CustomerMainPage customerMainPage = new CustomerMainPage(username);
                 customerMainPage.setVisible(true);

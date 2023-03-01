@@ -77,6 +77,7 @@ public class DeliverViewOrder extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("View Order");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 0));
 
@@ -203,6 +204,7 @@ public class DeliverViewOrder extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -288,7 +290,7 @@ public class DeliverViewOrder extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliverViewOrder(User.getUsername()).setVisible(true);
+                new DeliverViewOrder(Customer.getUsername()).setVisible(true);
             }
         });
     }

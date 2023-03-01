@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Customer {
+public class Customer extends User{
     private static String username;
     private String password;
     private String sex;
@@ -43,6 +43,11 @@ public class Customer {
 
     // Add getters and setters for all fields
 
+    public Customer(){
+        
+    }
+    
+    
     public static boolean writeToFile(Customer customer,String role) {
         try {
             FileWriter writer = new FileWriter("users.txt", true);
@@ -55,12 +60,13 @@ public class Customer {
         }
     }
     
-    public static boolean isUsernameTaken(String username) {
+    @Override
+    public boolean isUsernameTaken(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("/");
-                if (parts.length == 7 && parts[0].equals(username)) {
+                if (parts[0].equals(username)) {
                     return true;
                 }
             }
@@ -71,7 +77,8 @@ public class Customer {
     }
     
     
-    public static boolean isValidLogin(String username, String password) {
+    @Override
+    public boolean isValidLogin(String username, String password) {
         // read stored user information from text file
         try (Scanner scanner = new Scanner(new File("users.txt"))) {
             while (scanner.hasNextLine()) {

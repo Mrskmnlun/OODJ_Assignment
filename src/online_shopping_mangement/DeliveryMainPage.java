@@ -35,6 +35,7 @@ public class DeliveryMainPage extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Delivery Main Page");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 0));
 
@@ -110,6 +111,7 @@ public class DeliveryMainPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -160,7 +162,7 @@ public class DeliveryMainPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryMainPage(User.getUsername()).setVisible(true);
+                new DeliveryMainPage(Customer.getUsername()).setVisible(true);
             }
         });
     }

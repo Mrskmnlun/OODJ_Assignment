@@ -84,6 +84,7 @@ public class DeliverSelected extends javax.swing.JFrame {
         Address = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sekect Order");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 0));
 
@@ -276,6 +277,7 @@ public class DeliverSelected extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -455,7 +457,7 @@ public class DeliverSelected extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliverSelected(User.getUsername()).setVisible(true);
+                new DeliverSelected(Customer.getUsername()).setVisible(true);
             }
         });
     }

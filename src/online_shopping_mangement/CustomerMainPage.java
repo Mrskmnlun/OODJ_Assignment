@@ -38,6 +38,7 @@ public class CustomerMainPage extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Main Page");
 
         jButton1.setText("Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +122,7 @@ public class CustomerMainPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -177,7 +179,7 @@ public class CustomerMainPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerMainPage(User.getUsername()).setVisible(true);
+                new CustomerMainPage(Customer.getUsername()).setVisible(true);
             }
         });
     }

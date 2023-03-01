@@ -59,6 +59,7 @@ private String username;
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Purchase History");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 0));
 
@@ -139,6 +140,7 @@ private String username;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -177,7 +179,7 @@ private String username;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PurchaseHistory(User.getUsername()).setVisible(true);
+                new PurchaseHistory(Customer.getUsername()).setVisible(true);
             }
         });
     }

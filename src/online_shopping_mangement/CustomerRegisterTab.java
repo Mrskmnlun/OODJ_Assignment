@@ -49,6 +49,7 @@ public class CustomerRegisterTab extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registeration");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Registration");
@@ -177,6 +178,7 @@ public class CustomerRegisterTab extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -197,15 +199,16 @@ public class CustomerRegisterTab extends javax.swing.JFrame {
         return;
     }
     
+    Customer CS = new Customer();
     // Check if username is already taken
-    if (User.isUsernameTaken(username)) {
+    if (CS.isUsernameTaken(username)) {
         JOptionPane.showMessageDialog(null, "Username is already taken. Please choose a different one.");
         return;
     }
     
-    Customer newUser = new Customer(username, password, sex, address, email, phoneNumber);
+    Customer cs = new Customer(username, password, sex, address, email, phoneNumber);
     // write user to file
-    if (Customer.writeToFile(newUser,"customer")) {
+    if (cs.writeToFile(cs,"customer")) {
         // display success message
         JOptionPane.showMessageDialog(null, "Registration successful!");
         // clear input fields

@@ -88,6 +88,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
         TotalPrice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 51));
 
@@ -290,6 +291,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -396,7 +398,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
 for (int i = 0; i < model.getRowCount(); i++) {
     double quantity = Double.parseDouble(model.getValueAt(i, 4).toString());
     double price = Double.parseDouble(model.getValueAt(i, 5).toString());
-    double totalprice = quantity * price;
+    double totalprice = price * quantity;
     sb.append("S").append(String.format("%04d", orderId)).append("/");
     sb.append(username).append("/");
     sb.append(model.getValueAt(i, 0)).append("/");
@@ -441,7 +443,7 @@ for (int i = 0; i < model.getRowCount(); i++) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisteredMenu(User.getUsername()).setVisible(true);
+                new RegisteredMenu(Customer.getUsername()).setVisible(true);
             }
         });
     }
