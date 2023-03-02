@@ -43,7 +43,7 @@ public class ViewOrderAndPayment extends javax.swing.JFrame {
                     while ((deliverydata = br2.readLine())!= null){
                         String[] data2 = deliverydata.split("/"); 
                         if(data2[2].equals(data[0])){
-                           String tabledata[] = {data[0], data[1], data[2], data[3], data[6], data[7], data[8], data2[7], data2[8]};
+                           String tabledata[] = {data[0], data[1], data[2], data[3], data[6], data[8], data[9], data2[7], data2[8]};
                            tblModel.addRow(tabledata);
                         }
                     }

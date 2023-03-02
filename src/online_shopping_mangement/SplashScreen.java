@@ -5,6 +5,7 @@
 package online_shopping_mangement;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -119,6 +120,9 @@ public class SplashScreen extends javax.swing.JFrame {
                     sp.LoadingLabel.setText("Launching System....");
                 }
                 if(i==100){
+                    String str = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+                    UIManager.setLookAndFeel(str);
+                    
                     sp.dispose();
                     Choosemain cm = new Choosemain();
                     cm.setVisible(true);

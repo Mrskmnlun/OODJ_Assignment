@@ -29,11 +29,11 @@ public class AdminMainPage extends javax.swing.JFrame {
         nav = new javax.swing.JPanel();
         resortroombookingsystem = new javax.swing.JLabel();
         logoutbutton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        manageuser = new javax.swing.JButton();
+        managecategory = new javax.swing.JButton();
+        manageproduct = new javax.swing.JButton();
+        vieworder = new javax.swing.JButton();
+        delivery = new javax.swing.JButton();
         welcome = new javax.swing.JLabel();
         welcome1 = new javax.swing.JLabel();
 
@@ -77,43 +77,43 @@ public class AdminMainPage extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Manage User");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        manageuser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageuser.setText("Manage User");
+        manageuser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                manageuserActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Manage Category");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        managecategory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        managecategory.setText("Manage Category");
+        managecategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                managecategoryActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("Manage Product");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        manageproduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageproduct.setText("Manage Product");
+        manageproduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                manageproductActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton4.setText("View Order & Payment");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        vieworder.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        vieworder.setText("View Order & Payment");
+        vieworder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                vieworderActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("Delivery");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        delivery.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        delivery.setText("Delivery");
+        delivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                deliveryActionPerformed(evt);
             }
         });
 
@@ -132,16 +132,16 @@ public class AdminMainPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delivery, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
-                        .addComponent(jButton4))
+                        .addComponent(vieworder))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(manageuser, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(managecategory, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(manageproduct, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,13 +161,13 @@ public class AdminMainPage extends javax.swing.JFrame {
                 .addComponent(welcome1)
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(managecategory, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageproduct, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageuser, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(delivery, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vieworder, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
 
@@ -181,25 +181,35 @@ public class AdminMainPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoutbuttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void manageuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageuserActionPerformed
+        ManageUser mu = new ManageUser();
+        mu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_manageuserActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void managecategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managecategoryActionPerformed
+        ManageCategory mc = new ManageCategory();
+        mc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_managecategoryActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void manageproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageproductActionPerformed
+        ManageProduct mp = new ManageProduct();
+        mp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_manageproductActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void vieworderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vieworderActionPerformed
+        ViewOrderAndPayment vo = new ViewOrderAndPayment();
+        vo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_vieworderActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void deliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryActionPerformed
+        AssignDelivery ad = new AssignDelivery();
+        ad.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_deliveryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,14 +247,14 @@ public class AdminMainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton delivery;
     private javax.swing.JButton logoutbutton;
+    private javax.swing.JButton managecategory;
+    private javax.swing.JButton manageproduct;
+    private javax.swing.JButton manageuser;
     private javax.swing.JPanel nav;
     private javax.swing.JLabel resortroombookingsystem;
+    private javax.swing.JButton vieworder;
     private javax.swing.JLabel welcome;
     private javax.swing.JLabel welcome1;
     // End of variables declaration//GEN-END:variables

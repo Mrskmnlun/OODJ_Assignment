@@ -33,15 +33,15 @@ public class AssignDelivery extends javax.swing.JFrame {
             DefaultTableModel tblModel = (DefaultTableModel)OrderTable.getModel();
             while ((orderdata = br.readLine())!= null){
                 String[] data = orderdata.split("/");
-                if (data[10].equals("Undeliver")){
-                    String[] tabledata = {data[0], data[1], data[2], data[3], data[6], data[7], data[8], data[9]};
+                if (data[11].equals("undeliver")){
+                    String[] tabledata = {data[0], data[1], data[2], data[3], data[6], data[7], data[8], data[9], data[10]};
                     tblModel.addRow(tabledata);
                 }
             }
             br.close();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Error occurs while reading file.", "System Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Error occurs while reading file1.", "System Error", JOptionPane.ERROR_MESSAGE);
         }
         
         
@@ -106,7 +106,7 @@ public class AssignDelivery extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Customer Name", "Product ID", "Product Name", "Quantity", "Total Payment", "Order Date", "Address"
+                "Order ID", "Customer Name", "Product ID", "Product Name", "Quantity", "Price", "Total Payment", "Order Date", "Address"
             }
         ));
         jScrollPane1.setViewportView(OrderTable);
@@ -204,13 +204,13 @@ public class AssignDelivery extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(deliverystaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assign, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,7 +240,7 @@ public class AssignDelivery extends javax.swing.JFrame {
                     while ((line = br.readLine())!= null){
                         String[] data = line.split("/");
                         if (data[0].equals(OrderID)){
-                            appenddata.println(data[0]+"/"+data[1]+"/"+data[2]+"/"+data[3]+"/"+data[4]+"/"+data[5]+"/"+data[6]+"/"+data[7]+"/"+data[8]+"/"+data[9]+"/Assigned");
+                            appenddata.println(data[0]+"/"+data[1]+"/"+data[2]+"/"+data[3]+"/"+data[4]+"/"+data[5]+"/"+data[6]+"/"+data[7]+"/"+data[8]+"/"+data[9]+"/"+data[10]+"/assigned");
                          appenddata.flush();
                         }
                         else{
@@ -291,7 +291,7 @@ public class AssignDelivery extends javax.swing.JFrame {
                     br2.close();
                     
                     PrintWriter appenddata2 = new PrintWriter(new BufferedWriter(new FileWriter("Delivery.txt", true)));
-                    appenddata2.println(id+"/"+StaffName+"/"+OrderID+"/"+CustomerName+"/"+ProductName+"/"+Quantity+"/"+Address+"/Pending/-/-");
+                    appenddata2.println(id+"/"+StaffName+"/"+OrderID+"/"+CustomerName+"/"+ProductName+"/"+Quantity+"/"+Address+"/undeliver/-/-");
                     appenddata2.close();
                 }
                 catch(Exception e){
@@ -305,8 +305,8 @@ public class AssignDelivery extends javax.swing.JFrame {
                     String orderdata = br3.readLine();
                     while ((orderdata = br3.readLine())!= null){
                         String[] data = orderdata.split("/");
-                        if (data[10].equals("Undeliver")){
-                            String[] tabledata = {data[0], data[1], data[2], data[3], data[6], data[7], data[8], data[9]};
+                        if (data[11].equals("undeliver")){
+                            String[] tabledata = {data[0], data[1], data[2], data[3], data[6], data[7], data[8], data[9], data[10]};
                             tblModel.addRow(tabledata);
                         }
                     }
