@@ -357,7 +357,10 @@ public class RegisteredMenu extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     // Get the data model of the JTable
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
+    if (model.getRowCount() == 0) {
+        JOptionPane.showMessageDialog(this, "No items selected.");
+        return;
+    }
     // Create a StringBuilder to store the data
     StringBuilder sb = new StringBuilder();
 

@@ -83,11 +83,13 @@ public class Customer extends User{
         try (Scanner scanner = new Scanner(new File("users.txt"))) {
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split("/");
+                if (parts.length >= 2) {
                 String storedUsername = parts[0];
                 String storedPassword = parts[1];
                 if (username.equals(storedUsername) && password.equals(storedPassword)) {
                     return true;
                 }
+            }
             }
         } catch (FileNotFoundException e) {
             // handle file not found error
@@ -110,7 +112,15 @@ public static Customer getUserData(String username) {
             String email = parts[4];
             String phoneNumber = parts[5];
             if (username.equals(storedUsername)) {
-                return new Customer(storedUsername, password, sex, address, email, phoneNumber);
+                Customer cs = new Customer();
+                cs.setUsername(storedUsername);
+                cs.setPassword(password);
+                cs.setSex(sex);
+                cs.setAddress(address);
+                cs.setEmail(email);
+                cs.setPhoneNumber(phoneNumber);
+                return cs;
+                        
             }
         }
     } catch (FileNotFoundException e) {
