@@ -199,7 +199,7 @@ public class CustomerRegisterTab extends javax.swing.JFrame {
         return;
     }
     
-    Customer CS = new Customer();
+    User CS = new Customer();
     // Check if username is already taken
     if (CS.isUsernameTaken(username)) {
         JOptionPane.showMessageDialog(null, "Username is already taken. Please choose a different one.");

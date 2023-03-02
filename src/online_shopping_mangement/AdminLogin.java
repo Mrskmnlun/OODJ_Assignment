@@ -33,7 +33,7 @@ public class AdminLogin extends javax.swing.JFrame {
         usertype = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
@@ -43,6 +43,7 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Admin/Staff Login");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 0));
 
@@ -54,19 +55,20 @@ public class AdminLogin extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Admin / Staff Login");
 
-        jLabel2.setText("Email");
+        jLabel2.setText("Username");
 
         jLabel3.setText("Password");
 
         usertype.add(jRadioButton1);
-        jRadioButton1.setText("Admin");
+        jRadioButton1.setText("Admin  ");
         jRadioButton1.setToolTipText("");
+        jRadioButton1.setActionCommand("Admin");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -106,7 +108,7 @@ public class AdminLogin extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(email)
+                                    .addComponent(username)
                                     .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                                     .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -130,7 +132,7 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,26 +162,20 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        String Email, Password, Usertype;
+        String Username, Password, Usertype;
         
-        Email = email.getText();
+        Username = username.getText();
         Password = String.valueOf(password.getPassword());
-        Usertype = String.valueOf(usertype.getSelection().getActionCommand());
-        
-        
         try{
-           
-        BufferedReader br = new BufferedReader(new FileReader("UserAccount.txt"));
-        String value;
         
-        int flg;
-        flg=0;
-        while((value = br.readLine())!= null){
-            String[] data = value.split("/");
+            Usertype = String.valueOf(usertype.getSelection().getActionCommand());    
             
-            if (Email.equals(data[3]) && Password.equals(data[6])){
-                flg=flg+1;
-                if (Usertype.equals(data[2])){
+            User ad = new AdminOrStaff();
+            
+            if (ad.isValidLogin(Username, Password)){
+                AdminOrStaff ad1 = new AdminOrStaff();
+                ad1 = ad1.getUserData(Username);
+                if (Usertype.equals(ad1.getUsertype())){
                     JOptionPane.showMessageDialog(rootPane, "Login Successful", "Login Success", JOptionPane.INFORMATION_MESSAGE);
                     if (Usertype.equals("Admin")){
                         AdminMainPage am = new AdminMainPage();
@@ -187,28 +183,25 @@ public class AdminLogin extends javax.swing.JFrame {
                         dispose();
                     }
                     else if (Usertype.equals("Delivery Staff")){
-                        DeliveryMainPage am = new DeliveryMainPage(data[1]);
+                        DeliveryMainPage am = new DeliveryMainPage(ad1.getUsername());
                         am.setVisible(true);
                         dispose();
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(rootPane, "Wrong Username or Password. Please Try Again!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password. Please Try Again!", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 }
-            }         
+            }    
+            
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password. Please Try Again!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        br.close();
-        
-        if (flg==0){
-            JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password. Please Try Again!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "Please select the user type.", "System Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        }
-        catch(Exception e)
-        {
-          JOptionPane.showMessageDialog(rootPane, "Error occurs while reading file.", "System Error", JOptionPane.ERROR_MESSAGE);
-        }
-                          
+
+                                  
     }//GEN-LAST:event_loginActionPerformed
 
     /**
@@ -247,7 +240,6 @@ public class AdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,6 +249,7 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JButton login;
     private javax.swing.JPasswordField password;
+    private javax.swing.JTextField username;
     private javax.swing.ButtonGroup usertype;
     // End of variables declaration//GEN-END:variables
 }

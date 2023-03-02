@@ -274,8 +274,13 @@ public class AddUser extends javax.swing.JFrame {
         String Address = address.getText();
         String Password = password.getText();
         
+        User ad = new AdminOrStaff();
+        
         if (UserID.equals("") || UserName.equals("") || Email.equals("") || ContactNo.equals("") || Address.equals("") || Password.equals("")){
             JOptionPane.showMessageDialog(null, "Please fill up all the details!", "Error Message", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (ad.isUsernameTaken(UserName)) {
+            JOptionPane.showMessageDialog(null, "Username is already taken. Please choose a different one.", "Error Message", JOptionPane.ERROR_MESSAGE);
         }
         else{
             try{
