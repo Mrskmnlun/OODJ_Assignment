@@ -385,13 +385,10 @@ public class ManageProduct extends javax.swing.JFrame {
                     if (categoryname.equals(data[1])){
                         if (data[2].contains(",")){
                             Subcategory = data[2].split(",");
-                            System.out.println(Subcategory[1]);
                         }
                         else{
                             Subcategory = new String[1];
                             Subcategory[0] = data[2];
-                            System.out.println("yes");
-
                         }
                     }
                 }

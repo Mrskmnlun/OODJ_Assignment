@@ -8,10 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -27,16 +24,6 @@ public class AdminOrStaff extends User {
     private String password;
 
     public AdminOrStaff() {
-    }
-
-    
-    public AdminOrStaff(String username, String usertype, String email, String phoneNumber, String address, String password) {
-        this.username = username;
-        this.usertype = usertype;
-        this.email = email;
-        this.contactnumber = phoneNumber;
-        this.address = address;
-        this.password = password;
     }
     
     @Override
