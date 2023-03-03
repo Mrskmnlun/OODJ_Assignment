@@ -21,7 +21,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     public CustomerMenu() {
         initComponents();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("Data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("Product.txt"));
             String header = br.readLine(); // Read and discard the first line (header row)
             String line;
             DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
