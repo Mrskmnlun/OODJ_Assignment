@@ -30,7 +30,7 @@ public class RegisteredMenu extends javax.swing.JFrame {
         System.out.println("Username passed to Menu: " + username);
         
         try {
-            BufferedReader br = new BufferedReader(new FileReader("Data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("Product.txt"));
             String header = br.readLine(); // Read and discard the first line (header row)
             String line;
             DefaultTableModel tblModel = (DefaultTableModel) jTable2.getModel();
